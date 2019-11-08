@@ -1,4 +1,32 @@
+# 📚Library App Frontend
+
+<p align = "center"><a href="https://www.arkademy.com/" target="blank"><img src="https://www.arkademy.com/img/logo%20arkademy-01.9c1222ba.png" width="200" alt="Arkademy" /></a></p>
+
+Library Frontend Using ReactJS and Material UI
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+[![GitHub followers](https://img.shields.io/github/followers/iyansr?style=social)](https://github.com/HasnawiH?tab=followers)
+
+# Table Of Content
+
+- [Library App Frontebd](#library-app-frontend)
+  - [Table Of Content](#table-of-content)
+  - [Stacks](#stacks)
+  - [Dependencies](#dependencies)
+  - [Available Scripts](#available-script)
+  - [Learn More](#learn-more)
+
+## Stacks
+
+- ReactJS
+- Material UI
+
+## Dependencies
+
+- [ReactJS](https://www.reactjs.org) - ReactJS for User Interface Aplication
+- [Material UI](https://www.reactjs.org) - For framework CSS
 
 ## Available Scripts
 
@@ -66,4 +94,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# Frontend-library-app
