@@ -1,4 +1,4 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   h2: {
@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme => ({
   },
   listItem: {
     marginLeft: 25
+  },
+  icon: {
+    color: "blue"
   }
 }));
 

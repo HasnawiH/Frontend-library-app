@@ -1,19 +1,22 @@
-import React from "react";
-import { MenuItem } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import Toolbar from "@material-ui/core/Toolbar";
-import useStyles from "./NavbarStyle";
+import React, { Fragment } from "react";
+import {
+  MenuItem,
+  Typography,
+  Toolbar,
+  InputBase,
+  Avatar
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
-import { Avatar } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import useStyles from "./NavbarStyle";
 import logo from "../../Assets/img/logo.png";
 
+//function component
 const Navbar = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <Fragment>
       <MenuItem className={classes.menuItem}>
         All Categories <ArrowDropDownIcon />
       </MenuItem>
@@ -38,7 +41,7 @@ const Navbar = () => {
         <Avatar style={{ width: 32, height: 32 }} src={logo}></Avatar>
         <h3 style={{ color: "black" }}>Library Book</h3>
       </Toolbar>
-    </>
+    </Fragment>
   );
 };
 

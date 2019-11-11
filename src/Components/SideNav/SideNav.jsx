@@ -1,21 +1,24 @@
-import React from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import { Avatar } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import imgAvatar from "../../Assets/img/img3.png";
-import useStyles from "./SideNavStyle";
+import React, { Fragment } from "react";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Avatar,
+  Grid,
+  Button,
+  Dialog,
+  IconButton,
+  Typography,
+  TextField
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
+import { Add, Explore, History } from "@material-ui/icons";
+import imgAvatar from "../../Assets/img/img3.png";
+import useStyles from "./SideNavStyle";
 
 const styles = theme => ({
   root: {
@@ -61,6 +64,7 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 
+// function component
 const SideNav = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -72,7 +76,7 @@ const SideNav = () => {
   };
 
   return (
-    <>
+    <Fragment>
       {/* modal add data code */}
       <div className="modal-addData">
         <Dialog
@@ -130,12 +134,15 @@ const SideNav = () => {
 
       <List>
         <ListItem button>
+          <Explore className={classes.icon} />
           <ListItemText className={classes.listItem} primary="Explore" />
         </ListItem>
         <ListItem button>
+          <History className={classes.icon} />
           <ListItemText className={classes.listItem} primary="History" />
         </ListItem>
         <ListItem button>
+          <Add className={classes.icon} />
           <ListItemText
             className={classes.listItem}
             primary="Add Book"
@@ -143,7 +150,7 @@ const SideNav = () => {
           />
         </ListItem>
       </List>
-    </>
+    </Fragment>
   );
 };
 

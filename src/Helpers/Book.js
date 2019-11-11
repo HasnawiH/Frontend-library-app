@@ -1,32 +1,5 @@
 const dataBook = [
   {
-    imgUrl: "https://ssvr.bukukita.com/babacms/displaybuku/113199_f.jpg",
-    title: "Anjing Setan",
-    desc:
-      "Kutukan anjing setan membayangi keluarga Baskerville selama beberapa generasi serta dianggap menjadi penyebab kematian para ahli waris keluarga itu. ",
-    author: "Sir Arthur Conan Doyle",
-    status: "Avaliable",
-    genre: "Novel"
-  },
-  {
-    imgUrl: "https://ssvr.bukukita.com/babacms/displaybuku/112701_f.jpg",
-    title: " Gadis Pendongeng",
-    desc:
-      "Aku suka jalanan, karena jalanan selalu membuatku bertanya-tanya apa yang ada di ujungnya.",
-    author: "L.M. Montgomery",
-    status: "Avaliable",
-    genre: "Novel"
-  },
-  {
-    imgUrl: "https://ssvr.bukukita.com/babacms/displaybuku/113241_f.jpg",
-    title: "Bersamamu Lagi",
-    desc:
-      "Setiap hari terasa sama bagi Rhiannon. Ia sudah menerima jalan hidupnya, yakin bahwa ia memang ditakdirkan punya pacar yang dingin dan temperamental, Justin.",
-    author: "David Levithan",
-    status: "Avaliable",
-    genre: "Novel"
-  },
-  {
     imgUrl: "https://ssvr.bukukita.com/babacms/displaybuku/111072_f.jpg",
     title: "Dilanku Tahun 1990",
     desc:
@@ -50,6 +23,33 @@ const dataBook = [
     desc:
       "Tessa adalah gadis manis, tahu apa yang dia cita-citakan, memiliki ambisi, pacar baik hati, serta ibu yang selalu mengarahkan kehidupannya.",
     author: "Anna Todd",
+    status: "Avaliable",
+    genre: "Novel"
+  },
+  {
+    imgUrl: "https://ssvr.bukukita.com/babacms/displaybuku/113199_f.jpg",
+    title: "Anjing Setan",
+    desc:
+      "Kutukan anjing setan membayangi keluarga Baskerville selama beberapa generasi serta dianggap menjadi penyebab kematian para ahli waris keluarga itu. ",
+    author: "Sir Arthur Conan Doyle",
+    status: "Avaliable",
+    genre: "Novel"
+  },
+  {
+    imgUrl: "https://ssvr.bukukita.com/babacms/displaybuku/112701_f.jpg",
+    title: " Gadis Pendongeng",
+    desc:
+      "Aku suka jalanan, karena jalanan selalu membuatku bertanya-tanya apa yang ada di ujungnya.",
+    author: "L.M. Montgomery",
+    status: "Avaliable",
+    genre: "Novel"
+  },
+  {
+    imgUrl: "https://ssvr.bukukita.com/babacms/displaybuku/113241_f.jpg",
+    title: "Bersamamu Lagi",
+    desc:
+      "Setiap hari terasa sama bagi Rhiannon. Ia sudah menerima jalan hidupnya, yakin bahwa ia memang ditakdirkan punya pacar yang dingin dan temperamental, Justin.",
+    author: "David Levithan",
     status: "Avaliable",
     genre: "Novel"
   },
