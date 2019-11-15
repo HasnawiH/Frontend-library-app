@@ -17,7 +17,7 @@ import Cardflow from "../../Components/Carousel/Carousel copy";
 
 const Home = () => {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);

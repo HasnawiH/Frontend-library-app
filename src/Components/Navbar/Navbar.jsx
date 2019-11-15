@@ -24,11 +24,10 @@ const Navbar = () => {
   const handleChange = e => {
     e.preventDefault();
     setSearch(e.target.value);
-    if (search === "") {
-      dispatch(getBooks());
-    } else {
-      setSearch("");
+    if (search != "") {
       dispatch(searchByTitle(search));
+    } else {
+      dispatch(getBooks());
     }
   };
 

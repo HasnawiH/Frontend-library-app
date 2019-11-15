@@ -295,7 +295,7 @@ const Detail = props => {
             }}
           />
           <Button
-            style={{ marginLeft: 910, top: "-180px" }}
+            style={{ marginLeft: 910, top: "-180px", borderRadius: 5 }}
             variant="contained"
             color="primary"
             disabled={bookDetail.status != "Avaliable"}
