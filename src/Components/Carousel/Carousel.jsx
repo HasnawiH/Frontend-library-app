@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "3d-react-carousal";
-import Book from "../../Helpers/Book";
+import { getBooks } from "../../Public/Redux/actions/book";
+//import Book from "../../Helpers/Book";
 
 const SlideView = () => {
+  const dispatch = useDispatch();
+  const book = useSelector(state => state.book.bookList);
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
+
   let slides = [];
-  Book.forEach((books, index) => {
+  book.forEach((books, index) => {
     slides.push(
       <img
         style={{ borderRadius: 7 }}
@@ -16,7 +25,9 @@ const SlideView = () => {
     );
   });
 
-  return <Carousel slides={slides} autoPlay={true} />;
+  // // console.log(slides);
+  // <Carousel slides={slides} />;
+  return <Carousel slides={slides} />;
 };
 
 export default SlideView;

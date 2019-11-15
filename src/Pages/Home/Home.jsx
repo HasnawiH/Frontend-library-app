@@ -12,7 +12,8 @@ import useStyles from "./HomeStyle";
 import Navbar from "../../Components/Navbar/Navbar";
 import SideNav from "../../Components/SideNav/SideNav";
 import ImgMediaCard from "../../Components/Card/Card";
-import SlideView from "../../Components/Carousel/Carousel";
+//import SlideView from "../../Components/Carousel/Carousel";
+import Cardflow from "../../Components/Carousel/Carousel copy";
 
 const Home = () => {
   const classes = useStyles();
@@ -71,7 +72,7 @@ const Home = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <SlideView />
+        <Cardflow />
         <h2 className={classes.h2}>List Book</h2>
         <ImgMediaCard />
       </main>

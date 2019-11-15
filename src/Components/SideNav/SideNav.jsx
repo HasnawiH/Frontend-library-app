@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React, { useState, Fragment } from "react";
+import { useDispatch } from "react-redux";
 import {
   List,
   ListItem,
@@ -19,6 +20,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import { Add, Explore, History } from "@material-ui/icons";
 import imgAvatar from "../../Assets/img/img3.png";
 import useStyles from "./SideNavStyle";
+import { addBook } from "../../Public/Redux/actions/book";
 
 const styles = theme => ({
   root: {
@@ -67,7 +69,7 @@ const DialogActions = withStyles(theme => ({
 // function component
 const SideNav = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
@@ -75,15 +77,36 @@ const SideNav = () => {
     setOpen(true);
   };
 
+  //state
+  const [books, setBooks] = useState({
+    title: "",
+    author: "",
+    desc: "",
+    genre: "",
+    status: "",
+    imgUrl: ""
+  });
+
+  //handleChange
+  const handleChange = e => {
+    e.persist();
+    setBooks({ ...books, [e.target.name]: e.target.value });
+  };
+
+  const dispatch = useDispatch();
+  //handle submit
+  const handleSubmit = e => {
+    e.preventDefault();
+    const { title, author, desc, genre, status, imgUrl } = books;
+    dispatch(addBook(title, author, desc, genre, status, imgUrl));
+    window.location.reload();
+  };
+
   return (
     <Fragment>
       {/* modal add data code */}
       <div className="modal-addData">
-        <Dialog
-          onClose={handleClose}
-          aria-labelledby="customized-dialog-title"
-          open={open}
-        >
+        <Dialog aria-labelledby="customized-dialog-title" open={open}>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
             Add Data
           </DialogTitle>
@@ -92,17 +115,23 @@ const SideNav = () => {
               autoFocus
               margin="dense"
               id="name"
-              label="Url Image"
+              label="Title"
               type="email"
+              name="title"
+              value={books.title}
               fullWidth
+              onChange={handleChange}
             />
             <TextField
               autoFocus
               margin="dense"
               id="name"
-              label="Title"
+              label="Author"
               type="email"
+              name="author"
+              value={books.author}
               fullWidth
+              onChange={handleChange}
             />
 
             <TextField
@@ -111,14 +140,50 @@ const SideNav = () => {
               id="name"
               label="Description"
               type="email"
+              name="desc"
+              value={books.desc}
               fullWidth
+              onChange={handleChange}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Genre"
+              type="email"
+              name="genre"
+              value={books.genre}
+              fullWidth
+              onChange={handleChange}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Status"
+              type="email"
+              name="status"
+              value={books.status}
+              fullWidth
+              onChange={handleChange}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Image Url"
+              type="email"
+              name="imgUrl"
+              value={books.imgUrl}
+              fullWidth
+              onChange={handleChange}
             />
           </DialogContent>
           <DialogActions>
             <Button
               style={{ backgroundColor: "yellow", color: "white" }}
               autoFocus
-              onClick={handleClose}
+              onClick={handleSubmit}
             >
               Save
             </Button>

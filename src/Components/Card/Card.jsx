@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+// import InfiniteScroll from "react-infinite-scroller";
 import {
   Grid,
   Card,
@@ -10,7 +11,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-//import Book from "../../Helpers/Book";
 import { getBooks } from "../../Public/Redux/actions/book";
 
 const useStyles = makeStyles({
@@ -27,33 +27,46 @@ const useStyles = makeStyles({
 const ImgMediaCard = () => {
   const classes = useStyles();
   const [spacing] = useState(6);
-  const [book, setBook] = useState([]);
   const dispatch = useDispatch();
+  const book = useSelector(state => state.book.bookList);
+  // const [items, setItems] = useState(0);
 
-  useEffect( () => {
-    const result = dispatch(getBooks());
-    setBook(result);
+  useEffect(() => {
+    dispatch(getBooks());
   }, [dispatch]);
 
-  const list = book;
-  console.log(list);
+  // const fetchMoreData = () => {
+  //   // a fake async api call like which sends
+  //   // 20 more records in 1.5 secs
+  //   setTimeout(() => {
+  //     setItems({
+  //       items: items.concat(book.from({ length: 6 }))
+  //     });
+  //   }, 1500);
+  // };
+
   return (
     <Grid container className={classes.root} spacing={10}>
       <Grid item xs={12}>
         <Grid container justify="center" spacing={spacing}>
-          {list &&
-            list.data.entries.length > 0 &&
-            list.data.entries.map((books, index) => {
+          {/* <InfiniteScroll
+            dataLength={book.length}
+            next={fetchMoreData}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+          > */}
+          {book &&
+            book.length > 0 &&
+            book.map((books, index) => {
               return (
-                <Card className={classes.card}>
-                  <Link to={`detail/${index}`}>
+                <Card key={index} className={classes.card}>
+                  <Link to={`detail/${books.id}`}>
                     <CardMedia
                       component="img"
-                      alt="Contemplative Reptile"
                       height="140"
                       image={books.imgUrl}
                       book={books.imgUrl}
-                      title="Contemplative Reptile"
+                      title="Lihat Detail"
                     />
                   </Link>
                   <CardContent>
@@ -74,22 +87,24 @@ const ImgMediaCard = () => {
                       color="textSecondary"
                       component="p"
                     >
-                      {book.desc}
+                      {books.desc}
                     </Typography>
                   </CardContent>
                 </Card>
               );
             })}
+          {/* </InfiniteScroll> */}
         </Grid>
       </Grid>
     </Grid>
   );
 };
 
-const MapStateToProps = state => {
-  return {
-    book: state.book
-  };
-};
+// const MapStateToProps = state => {
+//   return {
+//     book: state.book.bookList
+//   };
+// };
 
-export default connect(MapStateToProps)(ImgMediaCard);
+// export default connect(MapStateToProps)(ImgMediaCard);
+export default ImgMediaCard;

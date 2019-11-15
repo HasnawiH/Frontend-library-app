@@ -12,7 +12,7 @@ function App() {
       <Provider store={store}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/detail/:index" component={Detail} />
+          <Route path="/detail/:id" component={Detail} />
         </Switch>
       </Provider>
     </Router>

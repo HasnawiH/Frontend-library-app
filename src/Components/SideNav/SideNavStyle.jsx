@@ -16,10 +16,10 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 5
   },
   listItem: {
-    marginLeft: 25
+    marginLeft: 15
   },
   icon: {
-    color: "blue"
+    color: "white"
   }
 }));
 
