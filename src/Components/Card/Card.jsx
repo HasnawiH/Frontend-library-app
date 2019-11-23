@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import InfiniteScroll from "react-infinite-scroller";
 import {
   Grid,
   Card,
@@ -29,32 +28,15 @@ const ImgMediaCard = () => {
   const [spacing] = useState(6);
   const dispatch = useDispatch();
   const book = useSelector(state => state.book.bookList);
-  // const [items, setItems] = useState(0);
 
   useEffect(() => {
     dispatch(getBooks());
   }, [dispatch]);
 
-  // const fetchMoreData = () => {
-  //   // a fake async api call like which sends
-  //   // 20 more records in 1.5 secs
-  //   setTimeout(() => {
-  //     setItems({
-  //       items: items.concat(book.from({ length: 6 }))
-  //     });
-  //   }, 1500);
-  // };
-
   return (
     <Grid container className={classes.root} spacing={10}>
       <Grid item xs={12}>
         <Grid container justify="center" spacing={spacing}>
-          {/* <InfiniteScroll
-            dataLength={book.length}
-            next={fetchMoreData}
-            hasMore={true}
-            loader={<h4>Loading...</h4>}
-          > */}
           {book &&
             book.length > 0 &&
             book.map((books, index) => {
@@ -66,7 +48,7 @@ const ImgMediaCard = () => {
                       height="140"
                       image={books.imgUrl}
                       book={books.imgUrl}
-                      title="Lihat Detail"
+                      title="View Detail"
                     />
                   </Link>
                   <CardContent>
@@ -78,22 +60,26 @@ const ImgMediaCard = () => {
                         books.status == "Avaliable" ? "primary" : "secondary"
                       }
                     />
+                    &nbsp; &nbsp;
                     <Chip size="small" variant="outlined" label={books.genre} />
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <br />
+                    <Typography gutterBottom variant="h6" component="h2">
                       {books.title}
                     </Typography>
-                    <Typography
+                    <Typography style={{ fontSize: 13 }}>
+                      Author : {books.author}
+                    </Typography>
+                    {/* <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
                       {books.desc}
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                 </Card>
               );
             })}
-          {/* </InfiniteScroll> */}
         </Grid>
       </Grid>
     </Grid>

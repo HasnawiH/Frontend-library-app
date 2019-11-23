@@ -181,7 +181,7 @@ const SideNav = () => {
           </DialogContent>
           <DialogActions>
             <Button
-              style={{ backgroundColor: "yellow", color: "white" }}
+              color="primary"
               autoFocus
               onClick={handleSubmit}
             >

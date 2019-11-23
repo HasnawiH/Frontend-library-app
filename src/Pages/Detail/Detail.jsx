@@ -243,7 +243,7 @@ const Detail = props => {
           title={bookDetail.title}
         />
         <Button
-          style={{ marginLeft: 1040, top: "-230px" }}
+          style={{ marginLeft: 1060, top: "-230px" }}
           variant="contained"
           color="default"
           onClick={handleDeleteButton}
@@ -251,7 +251,7 @@ const Detail = props => {
           Delete
         </Button>
         <Button
-          style={{ marginLeft: 960, top: "-266px" }}
+          style={{ marginLeft: 980, top: "-266px" }}
           variant="contained"
           color="default"
           onClick={handleClickOpen}
@@ -261,7 +261,7 @@ const Detail = props => {
         <CardContent
           style={{
             height: "275px",
-            marginLeft: 120
+            marginLeft: 150
           }}
         >
           <Chip size="large" label={bookDetail.genre} color="primary" />
@@ -287,15 +287,16 @@ const Detail = props => {
           <Avatar
             src={bookDetail.imgUrl}
             style={{
-              width: 130,
-              height: 150,
+              width: 170,
+              height: 200,
               borderRadius: 5,
-              marginLeft: 900,
-              top: "-310px"
+              marginLeft: 810,
+              top: "-380px",
+              boxShadow: 20
             }}
           />
           <Button
-            style={{ marginLeft: 910, top: "-180px", borderRadius: 5 }}
+            style={{ marginLeft: 840, top: "-200px", borderRadius: 10 }}
             variant="contained"
             color="primary"
             disabled={bookDetail.status != "Avaliable"}
