@@ -2,19 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Coverflow from "react-coverflow";
 import { StyleRoot } from "radium";
-//import { getBooks } from "../../Public/Redux/actions/book";
 
 const Cardflow = () => {
   const Book = useSelector(state => state.book.bookList);
 
-  // useEffect(() => {
-  //   dispatch(getBooks());
-  // }, [dispatch]);
-
   return (
     <StyleRoot>
       <Coverflow
-        displayQuantityOfSide={4}
+        displayQuantityOfSide={6}
         navigation={true}
         enableHeading={true}
         media={{
@@ -30,23 +25,10 @@ const Cardflow = () => {
         }}
       >
         {Book.map(books => {
-          return <img src={books.imgUrl} alt={books.title} />;
+          return (
+            <img style={{ zIndex: 0 }} src={books.imgUrl} alt={books.title} />
+          );
         })}
-        {/* <img
-          src="images/album-2.png"
-          alt="Album two"
-          data-action="http://passer.cc"
-        />
-        <img
-          src="images/album-3.png"
-          alt="Album three"
-          data-action="https://doce.cc/"
-        />
-        <img
-          src="images/album-4.png"
-          alt="Album four"
-          data-action="http://tw.yahoo.com"
-        /> */}
       </Coverflow>
     </StyleRoot>
   );

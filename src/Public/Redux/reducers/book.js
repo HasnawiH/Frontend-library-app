@@ -1,5 +1,6 @@
 const initialState = {
   bookList: [],
+  search: [],
   isLoading: false,
   isFulfilled: false,
   isRejected: false
@@ -76,7 +77,6 @@ const book = (state = initialState, action) => {
       };
 
     //case delete
-
     case "DELETE_BOOK_PENDING":
       return {
         ...state,
@@ -123,6 +123,11 @@ const book = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isFulfilled: true,
+        bookList: action.payload.data
+      };
+
+    case "SEARCH_BOOK":
+      return {
         bookList: action.payload.data
       };
 

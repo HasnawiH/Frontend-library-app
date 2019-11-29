@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import decode from "jwt-decode";
 import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
@@ -20,6 +21,7 @@ import {
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Swal from "sweetalert2";
 import { updateBook, deleteBook } from "../../Public/Redux/actions/book";
+import { borrowBooks } from "../../Public/Redux/actions/borrow";
 
 const styles = theme => ({
   root: {
@@ -73,6 +75,7 @@ const Detail = props => {
     status: "",
     imgUrl: ""
   });
+  const token = localStorage.getItem("token");
 
   const dispatch = useDispatch();
   const book = useSelector(state => state.book.bookList);
@@ -93,7 +96,7 @@ const Detail = props => {
 
   //handleBack
   // const handleBack = e => {
-  //   window.location = "/";
+  //   window.location.href = "/";
   // };
 
   //handleChange;
@@ -103,13 +106,15 @@ const Detail = props => {
   };
 
   //handle submit
-  const handleSubmit = e => {
+  const handleEdit = e => {
     const { id } = props.match.params;
     e.preventDefault();
     const { title, author, desc, genre, status, imgUrl } = bookDetail;
     dispatch(updateBook(id, title, author, desc, genre, status, imgUrl));
     setBookDetail(bookDetail);
-    handleClose();
+    setInterval(() => {
+      handleClose();
+    }, 1000);
   };
 
   //handle delete
@@ -144,6 +149,18 @@ const Detail = props => {
         });
       }
     });
+  };
+
+  // decode token
+  let id_user, level, user;
+  if (token) {
+    user = decode(token);
+    id_user = user.user_id;
+    level = user.level;
+  }
+  const handleBorrow = () => {
+    const id_book = props.match.params.id;
+    dispatch(borrowBooks(id_book, id_user));
   };
 
   return (
@@ -224,7 +241,7 @@ const Detail = props => {
           <Button
             style={{ backgroundColor: "yellow", color: "white" }}
             autoFocus
-            onClick={handleSubmit}
+            onClick={handleEdit}
           >
             Update
           </Button>
@@ -242,22 +259,37 @@ const Detail = props => {
           image={bookDetail.imgUrl}
           title={bookDetail.title}
         />
-        <Button
-          style={{ marginLeft: 1060, top: "-230px" }}
-          variant="contained"
-          color="default"
-          onClick={handleDeleteButton}
-        >
-          Delete
-        </Button>
-        <Button
+        {token && level === "admin" ? (
+          <>
+            <Button
+              style={{ marginLeft: 1060, top: "-230px" }}
+              variant="contained"
+              color="default"
+              onClick={handleDeleteButton}
+            >
+              Delete
+            </Button>
+            <Button
+              style={{ marginLeft: 980, top: "-266px" }}
+              variant="contained"
+              color="default"
+              onClick={handleClickOpen}
+            >
+              Edit
+            </Button>
+          </>
+        ) : (
+          ""
+        )}
+
+        {/* <Button
           style={{ marginLeft: 980, top: "-266px" }}
           variant="contained"
           color="default"
-          onClick={handleClickOpen}
+          onClick={handleBack}
         >
-          Edit
-        </Button>
+          Back
+        </Button> */}
         <CardContent
           style={{
             height: "275px",
@@ -266,13 +298,14 @@ const Detail = props => {
         >
           <Chip size="large" label={bookDetail.genre} color="primary" />
           <br />
-          <Chip
-            size="small"
-            variant="outlined"
+          <Typography
+            size="medium"
+            variant="h4"
             label={bookDetail.status}
             color={bookDetail.status === "Avaliable" ? "primary" : "secondary"}
             style={{ marginLeft: 500, bottom: "-50px" }}
-          />
+          >{bookDetail.status}
+            </Typography>
           <Typography gutterBottom variant="h4" component="h1">
             {bookDetail.title}
           </Typography>
@@ -284,6 +317,19 @@ const Detail = props => {
           >
             {bookDetail.desc}
           </Typography>
+          {level === "user" ? (
+            <Button
+              style={{ marginLeft: 840, top: "-200px", borderRadius: 10 }}
+              variant="contained"
+              color="primary"
+              // disabled={bookDetail.status !== "Avaliable"}
+              onClick={handleBorrow}
+            >
+              Borrow
+            </Button>
+          ) : (
+            ""
+          )}
           <Avatar
             src={bookDetail.imgUrl}
             style={{
@@ -291,18 +337,10 @@ const Detail = props => {
               height: 200,
               borderRadius: 5,
               marginLeft: 810,
-              top: "-380px",
+              top: "-300px",
               boxShadow: 20
             }}
           />
-          <Button
-            style={{ marginLeft: 840, top: "-200px", borderRadius: 10 }}
-            variant="contained"
-            color="primary"
-            disabled={bookDetail.status != "Avaliable"}
-          >
-            Borrow
-          </Button>
         </CardContent>
       </Card>
     </>

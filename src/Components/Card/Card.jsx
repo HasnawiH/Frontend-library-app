@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Grid,
   Card,
@@ -23,11 +23,13 @@ const useStyles = makeStyles({
   }
 });
 
+//function component
 const ImgMediaCard = () => {
   const classes = useStyles();
   const [spacing] = useState(6);
   const dispatch = useDispatch();
   const book = useSelector(state => state.book.bookList);
+  //const searchResult = useSelector(state => state.book.search);
 
   useEffect(() => {
     dispatch(getBooks());

@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import {
   List,
@@ -21,6 +22,7 @@ import { Add, Explore, History } from "@material-ui/icons";
 import imgAvatar from "../../Assets/img/img3.png";
 import useStyles from "./SideNavStyle";
 import { addBook } from "../../Public/Redux/actions/book";
+import { getBorrow } from "../Public/Redux/actions/borrow";
 
 const styles = theme => ({
   root: {
@@ -70,6 +72,9 @@ const DialogActions = withStyles(theme => ({
 const SideNav = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -93,13 +98,29 @@ const SideNav = () => {
     setBooks({ ...books, [e.target.name]: e.target.value });
   };
 
-  const dispatch = useDispatch();
   //handle submit
   const handleSubmit = e => {
     e.preventDefault();
     const { title, author, desc, genre, status, imgUrl } = books;
     dispatch(addBook(title, author, desc, genre, status, imgUrl));
-    window.location.reload();
+    setInterval(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
+  //decode token
+  let id_user, name, level, user;
+  if (token) {
+    user = decode(token);
+    id_user = user.user_id;
+    name = user.name;
+    level = user.level;
+  }
+
+  const handleHistory = e => {
+    e.preventDefault();
+    dispatch(getBorrow(id_user));
+    window.location.href = "/history";
   };
 
   return (
@@ -180,11 +201,7 @@ const SideNav = () => {
             />
           </DialogContent>
           <DialogActions>
-            <Button
-              color="primary"
-              autoFocus
-              onClick={handleSubmit}
-            >
+            <Button color="primary" autoFocus onClick={handleSubmit}>
               Save
             </Button>
           </DialogActions>
@@ -194,7 +211,13 @@ const SideNav = () => {
       {/* sidenav code */}
       <Grid container justify="center" alignItems="center">
         <Avatar src={imgAvatar} className={classes.bigAvatar} />
-        <h2 className={classes.h2}>Hasnawi Haeba</h2>
+      </Grid>
+      <Grid container justify="center" alignItems="center">
+        {token ? (
+          <h2 style={{ paddingTop: "0px" }}>{name}</h2>
+        ) : (
+          <h2 style={{ paddingTop: "0px" }}>Hi, Guest</h2>
+        )}
       </Grid>
 
       <List>
@@ -204,16 +227,38 @@ const SideNav = () => {
         </ListItem>
         <ListItem button>
           <History className={classes.icon} />
-          <ListItemText className={classes.listItem} primary="History" />
-        </ListItem>
-        <ListItem button>
-          <Add className={classes.icon} />
           <ListItemText
+            onClick={handleHistory}
             className={classes.listItem}
-            primary="Add Book"
-            onClick={handleClickOpen}
+            primary="History"
           />
         </ListItem>
+
+        {token && level === "admin" ? (
+          <>
+            <ListItem button>
+              <Add className={classes.icon} />
+              <ListItemText
+                className={classes.listItem}
+                primary="Add Book"
+                onClick={handleClickOpen}
+              />
+            </ListItem>
+            <ListItem button>
+              <Add className={classes.icon} />
+              <ListItemText
+                className={classes.listItem}
+                primary="Add Admin"
+                onClick={handleClickOpen}
+              />
+            </ListItem>
+          </>
+        ) : (
+          <ListItem button>
+            <History className={classes.icon} />
+            <ListItemText className={classes.listItem} primary="Whislist" />
+          </ListItem>
+        )}
       </List>
     </Fragment>
   );
