@@ -36,6 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 const SignIn = () => {
   const classes = useStyles();
+  const token = localStorage.getItem("token");
   const [input, setInput] = useState({
     email: "",
     password: ""
@@ -58,12 +59,12 @@ const SignIn = () => {
             position: "center",
             type: "success",
             icon: "success",
-            title: "Login success. \n Welcome to Libex app",
-            showConfirmButton: true
+            title: "Login success. \n Welcome to Libex app"
+            // showConfirmButton: true
           });
           setInterval(() => {
             window.location.href = "/";
-          }, 800);
+          }, 1000);
         } else {
           Swal.fire({
             position: "center",
@@ -89,7 +90,7 @@ const SignIn = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          SIGN IN
+          Sign In
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>

@@ -5,7 +5,7 @@ const initialState = {
   isRejected: false
 };
 
-const borrow = (state = initialState, action) => {
+const wishlist = (state = initialState, action) => {
   switch (action.type) {
     //case Get book
     case "GET_BORROW_PENDING":
@@ -59,4 +59,4 @@ const borrow = (state = initialState, action) => {
   }
 };
 
-export default borrow;
+export default wishlist;

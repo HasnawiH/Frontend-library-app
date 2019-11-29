@@ -92,7 +92,7 @@ const SignUp = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          SIGN UP
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -110,7 +110,11 @@ const SignUp = () => {
                 autoFocus
               />
             </Grid>
-
+            <Grid item xs={12}>
+              <Typography style={{ fontSize: "10px" }} variant="h6">
+                * Character minimal 3
+              </Typography>
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -125,6 +129,11 @@ const SignUp = () => {
               />
             </Grid>
             <Grid item xs={12}>
+              <Typography style={{ fontSize: "10px" }} variant="h6">
+                * Example : example@gmail.com
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -137,6 +146,11 @@ const SignUp = () => {
                 onChange={handleChange}
                 autoComplete="current-password"
               />
+            </Grid>
+            <Grid item xs={12}>
+              <Typography style={{ fontSize: "10px" }} variant="h6">
+                * Character minimal 8
+              </Typography>
             </Grid>
             {/* <Grid item xs={12}>
               <FormControlLabel

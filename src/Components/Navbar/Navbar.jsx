@@ -81,14 +81,24 @@ const Navbar = () => {
           </Button>
         </Link>
       ) : (
-        <Link style={{ textDecoration: "none" }} to={`/login`}>
-          <Button
-            variant="primary"
-            style={{ marginLeft: "30px", fontWeight: "bold" }}
-          >
-            Login
-          </Button>
-        </Link>
+        <Fragment>
+          <Link style={{ textDecoration: "none" }} to={`/login`}>
+            <Button
+              variant="primary"
+              style={{ marginLeft: "30px", fontWeight: "bold" }}
+            >
+              Login
+            </Button>
+          </Link>
+          <Link style={{ textDecoration: "none" }} to={`/register`}>
+            <Button
+              variant="primary"
+              style={{ marginLeft: "0px", fontWeight: "bold" }}
+            >
+              Register
+            </Button>
+          </Link>
+        </Fragment>
       )}
       <Toolbar>
         <img style={{ width: 32, height: 32 }} src={logo} alt="logo"></img>

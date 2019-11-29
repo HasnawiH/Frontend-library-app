@@ -11,6 +11,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { getBooks } from "../../Public/Redux/actions/book";
+import "./Card.css";
 
 const useStyles = makeStyles({
   card: {
@@ -68,16 +69,14 @@ const ImgMediaCard = () => {
                     <Typography gutterBottom variant="h6" component="h2">
                       {books.title}
                     </Typography>
-                    <Typography style={{ fontSize: 13 }}>
-                      Author : {books.author}
-                    </Typography>
-                    {/* <Typography
+                    <Typography
                       variant="body2"
                       color="textSecondary"
-                      component="p"
+                      className="desc"
+                      style={{ fontSize: 13 }}
                     >
                       {books.desc}
-                    </Typography> */}
+                    </Typography>
                   </CardContent>
                 </Card>
               );

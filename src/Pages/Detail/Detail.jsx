@@ -16,7 +16,8 @@ import {
   Dialog,
   DialogContent,
   DialogActions,
-  TextField
+  TextField,
+  Grid
 } from "@material-ui/core";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Swal from "sweetalert2";
@@ -158,131 +159,132 @@ const Detail = props => {
     id_user = user.user_id;
     level = user.level;
   }
-  const handleBorrow = () => {
+  const handleBorrow = async () => {
     const id_book = props.match.params.id;
-    dispatch(borrowBooks(id_book, id_user));
+    await dispatch(borrowBooks(id_book, id_user));
   };
 
   return (
     <>
-      <Dialog aria-labelledby="customized-dialog-title" open={open}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Edit Data
-        </DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Title"
-            name="title"
-            value={bookDetail.title}
-            fullWidth
-            onChange={handleChange}
-            required
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Author"
-            name="author"
-            value={bookDetail.author}
-            fullWidth
-            onChange={handleChange}
-            required
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Description"
-            name="desc"
-            value={bookDetail.desc}
-            fullWidth
-            onChange={handleChange}
-            required
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Genre"
-            name="genre"
-            value={bookDetail.genre}
-            fullWidth
-            onChange={handleChange}
-            required
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Status"
-            name="status"
-            value={bookDetail.status}
-            fullWidth
-            onChange={handleChange}
-            required
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Image Url"
-            name="imgUrl"
-            value={bookDetail.imgUrl}
-            fullWidth
-            onChange={handleChange}
-            required
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button
-            style={{ backgroundColor: "yellow", color: "white" }}
-            autoFocus
-            onClick={handleEdit}
-          >
-            Update
-          </Button>
-        </DialogActions>
-      </Dialog>
-      {/* Detail */}
-      <Card className={classes.card}>
-        {/* <Button style={{ marginLeft: 910 }} variant="contained" color="primary">
+      <Grid container style={{ flexGrow: 1 }}>
+        <Dialog aria-labelledby="customized-dialog-title" open={open}>
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+            Edit Data
+          </DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Title"
+              name="title"
+              value={bookDetail.title}
+              fullWidth
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Author"
+              name="author"
+              value={bookDetail.author}
+              fullWidth
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Description"
+              name="desc"
+              value={bookDetail.desc}
+              fullWidth
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Genre"
+              name="genre"
+              value={bookDetail.genre}
+              fullWidth
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Status"
+              name="status"
+              value={bookDetail.status}
+              fullWidth
+              onChange={handleChange}
+              required
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Image Url"
+              name="imgUrl"
+              value={bookDetail.imgUrl}
+              fullWidth
+              onChange={handleChange}
+              required
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              style={{ backgroundColor: "yellow", color: "white" }}
+              autoFocus
+              onClick={handleEdit}
+            >
+              Update
+            </Button>
+          </DialogActions>
+        </Dialog>
+        {/* Detail */}
+        <Card className={classes.card}>
+          {/* <Button style={{ marginLeft: 910 }} variant="contained" color="primary">
           Borrow
         </Button> */}
-        <CardMedia
-          component="img"
-          alt={bookDetail.title}
-          height="250px"
-          image={bookDetail.imgUrl}
-          title={bookDetail.title}
-        />
-        {token && level === "admin" ? (
-          <>
-            <Button
-              style={{ marginLeft: 1060, top: "-230px" }}
-              variant="contained"
-              color="default"
-              onClick={handleDeleteButton}
-            >
-              Delete
-            </Button>
-            <Button
-              style={{ marginLeft: 980, top: "-266px" }}
-              variant="contained"
-              color="default"
-              onClick={handleClickOpen}
-            >
-              Edit
-            </Button>
-          </>
-        ) : (
-          ""
-        )}
+          <CardMedia
+            component="img"
+            alt={bookDetail.title}
+            height="250px"
+            image={bookDetail.imgUrl}
+            title={bookDetail.title}
+          />
+          {token && level === "admin" ? (
+            <>
+              <Button
+                style={{ marginLeft: 1060, top: "-230px" }}
+                variant="contained"
+                color="default"
+                onClick={handleDeleteButton}
+              >
+                Delete
+              </Button>
+              <Button
+                style={{ marginLeft: 980, top: "-266px" }}
+                variant="contained"
+                color="default"
+                onClick={handleClickOpen}
+              >
+                Edit
+              </Button>
+            </>
+          ) : (
+            ""
+          )}
 
-        {/* <Button
+          {/* <Button
           style={{ marginLeft: 980, top: "-266px" }}
           variant="contained"
           color="default"
@@ -290,59 +292,76 @@ const Detail = props => {
         >
           Back
         </Button> */}
-        <CardContent
-          style={{
-            height: "275px",
-            marginLeft: 150
-          }}
-        >
-          <Chip size="large" label={bookDetail.genre} color="primary" />
-          <br />
-          <Typography
-            size="medium"
-            variant="h4"
-            label={bookDetail.status}
-            color={bookDetail.status === "Avaliable" ? "primary" : "secondary"}
-            style={{ marginLeft: 500, bottom: "-50px" }}
-          >{bookDetail.status}
-            </Typography>
-          <Typography gutterBottom variant="h4" component="h1">
-            {bookDetail.title}
-          </Typography>
-          <Typography
-            style={{ width: "40%" }}
-            variant="body2"
-            color="textSecondary"
-            component="p"
-          >
-            {bookDetail.desc}
-          </Typography>
-          {level === "user" ? (
-            <Button
-              style={{ marginLeft: 840, top: "-200px", borderRadius: 10 }}
-              variant="contained"
-              color="primary"
-              // disabled={bookDetail.status !== "Avaliable"}
-              onClick={handleBorrow}
-            >
-              Borrow
-            </Button>
-          ) : (
-            ""
-          )}
-          <Avatar
-            src={bookDetail.imgUrl}
+          <CardContent
             style={{
-              width: 170,
-              height: 200,
-              borderRadius: 5,
-              marginLeft: 810,
-              top: "-300px",
-              boxShadow: 20
+              height: "275px",
+              marginLeft: 150
             }}
-          />
-        </CardContent>
-      </Card>
+          >
+            <Chip size="large" label={bookDetail.genre} color="primary" />
+            <br />
+            <Typography
+              size="medium"
+              variant="h4"
+              label={bookDetail.status}
+              color={
+                bookDetail.status === "Avaliable" ? "primary" : "secondary"
+              }
+              style={{ marginLeft: 500, bottom: "-50px" }}
+            >
+              {bookDetail.status}
+            </Typography>
+            <Typography gutterBottom variant="h4" component="h1">
+              {bookDetail.title}
+            </Typography>
+            <Typography
+              style={{ width: "40%" }}
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              {bookDetail.desc}
+            </Typography>
+            {level === "user" ? (
+              <Button
+                style={{ marginLeft: 840, borderRadius: 10 }}
+                variant="contained"
+                color="primary"
+                disabled={bookDetail.status !== "Avaliable"}
+                onClick={e => {
+                  e.preventDefault();
+                  handleBorrow();
+                  Swal.fire({
+                    position: "center",
+                    type: "success",
+                    icon: "success",
+                    title: "Borrow success"
+                    // showConfirmButton: true
+                  });
+                  setInterval(() => {
+                    window.location.href = "/";
+                  }, 1000);
+                }}
+              >
+                Borrow
+              </Button>
+            ) : (
+              " "
+            )}
+            <Avatar
+              src={bookDetail.imgUrl}
+              style={{
+                width: 170,
+                height: 200,
+                borderRadius: 5,
+                marginLeft: 810,
+                top: "-300px",
+                boxShadow: 20
+              }}
+            />
+          </CardContent>
+        </Card>
+      </Grid>
     </>
   );
 };

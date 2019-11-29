@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import imgEmpty from "../../Assets/img/empty.svg";
 // import { Link } from "react-router-dom";
-import { getBorrow } from "../../Public/Redux/actions/borrow";
+import { getWhishlist } from "../../Public/Redux/actions/borrow";
 
 const useStyles = makeStyles({
   card: {
@@ -26,10 +26,10 @@ const useStyles = makeStyles({
 });
 
 //function component
-const History = () => {
+const Whishlist = () => {
   const classes = useStyles();
   const [spacing] = useState(6);
-  const listBorrow = useSelector(state => state.borrow.borrowList);
+  const listBorrow = useSelector(state => state.borrow.whishList);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
 
@@ -40,7 +40,7 @@ const History = () => {
   }
 
   useEffect(() => {
-    dispatch(getBorrow(id_user));
+    dispatch(getWhishlist(id_user));
   });
 
   return (
@@ -53,7 +53,7 @@ const History = () => {
             justify="center"
             spacing={spacing}
           >
-            <h1 style={{ marginTop: "100px" }}> Your History Borrow</h1>
+            <h1 style={{ marginTop: "100px" }}>Yours Whishlist</h1>
           </Grid>
           <hr style={{ paddingTop: "20px", height: "5px" }} />
           {listBorrow.length > 0 ? (
@@ -111,7 +111,7 @@ const History = () => {
                 justify="center"
                 spacing={spacing}
               >
-                <Typography variant="h6">History empty</Typography>
+                <Typography variant="h6">Whishlist empty</Typography>
               </Grid>
             </Fragment>
           )}
@@ -121,4 +121,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default Whishlist;

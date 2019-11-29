@@ -22,7 +22,6 @@ import { Add, Explore, History } from "@material-ui/icons";
 import imgAvatar from "../../Assets/img/img3.png";
 import useStyles from "./SideNavStyle";
 import { addBook } from "../../Public/Redux/actions/book";
-import { getBorrow } from "../Public/Redux/actions/borrow";
 
 const styles = theme => ({
   root: {
@@ -109,17 +108,14 @@ const SideNav = () => {
   };
 
   //decode token
-  let id_user, name, level, user;
+  let name, level, user;
   if (token) {
     user = decode(token);
-    id_user = user.user_id;
     name = user.name;
     level = user.level;
   }
 
   const handleHistory = e => {
-    e.preventDefault();
-    dispatch(getBorrow(id_user));
     window.location.href = "/history";
   };
 
@@ -216,48 +212,52 @@ const SideNav = () => {
         {token ? (
           <h2 style={{ paddingTop: "0px" }}>{name}</h2>
         ) : (
-          <h2 style={{ paddingTop: "0px" }}>Hi, Guest</h2>
+          <Fragment>
+            <h2 style={{ paddingTop: "0px" }}>Hi, Guest</h2>
+            <Grid container justify="center" alignItems="center">
+              <h5 style={{ paddingTop: "0px" }}>
+                Please login to borrow books..!
+              </h5>
+            </Grid>
+          </Fragment>
         )}
       </Grid>
 
       <List>
-        <ListItem button>
-          <Explore className={classes.icon} />
-          <ListItemText className={classes.listItem} primary="Explore" />
-        </ListItem>
-        <ListItem button>
-          <History className={classes.icon} />
-          <ListItemText
-            onClick={handleHistory}
-            className={classes.listItem}
-            primary="History"
-          />
-        </ListItem>
+        {level === "user" ? (
+          <Fragment>
+            <ListItem button>
+              <Explore className={classes.icon} />
+              <ListItemText className={classes.listItem} primary="Explore" />
+            </ListItem>
+            <ListItem href="/history" button>
+              <History className={classes.icon} />
+              <ListItemText
+                onClick={handleHistory}
+                className={classes.listItem}
+                primary="History"
+              />
+            </ListItem>
+            <ListItem button>
+              <History className={classes.icon} />
+              <ListItemText className={classes.listItem} primary="Wishlist" />
+            </ListItem>
+          </Fragment>
+        ) : (
+          ""
+        )}
 
         {token && level === "admin" ? (
-          <>
-            <ListItem button>
-              <Add className={classes.icon} />
-              <ListItemText
-                className={classes.listItem}
-                primary="Add Book"
-                onClick={handleClickOpen}
-              />
-            </ListItem>
-            <ListItem button>
-              <Add className={classes.icon} />
-              <ListItemText
-                className={classes.listItem}
-                primary="Add Admin"
-                onClick={handleClickOpen}
-              />
-            </ListItem>
-          </>
-        ) : (
           <ListItem button>
-            <History className={classes.icon} />
-            <ListItemText className={classes.listItem} primary="Whislist" />
+            <Add className={classes.icon} />
+            <ListItemText
+              className={classes.listItem}
+              primary="Add Book"
+              onClick={handleClickOpen}
+            />
           </ListItem>
+        ) : (
+          ""
         )}
       </List>
     </Fragment>
