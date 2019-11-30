@@ -1,5 +1,5 @@
 const initialState = {
-  borrowList: [],
+  wishlistList: [],
   isLoading: false,
   isFulfilled: false,
   isRejected: false
@@ -8,7 +8,7 @@ const initialState = {
 const wishlist = (state = initialState, action) => {
   switch (action.type) {
     //case Get book
-    case "GET_BORROW_PENDING":
+    case "GET_WISHLIST_PENDING":
       return {
         ...state,
         isLoading: true,
@@ -16,22 +16,22 @@ const wishlist = (state = initialState, action) => {
         isRejected: false
       };
 
-    case "GET_BORROW_REJECTED":
+    case "GET_WISHLIST_REJECTED":
       return {
         ...state,
         isLoading: false,
         isRejected: true
       };
 
-    case "GET_BORROW_FULFILLED":
+    case "GET_WISHLIST_FULFILLED":
       return {
         ...state,
         isLoading: false,
         isFulfilled: true,
-        borrowList: action.payload.data
+        wishlistList: action.payload.data
       };
 
-    case "POST_BORROW_PENDING":
+    case "POST_WISHLIST_PENDING":
       return {
         ...state,
         isLoading: true,
@@ -39,19 +39,19 @@ const wishlist = (state = initialState, action) => {
         isRejected: false
       };
 
-    case "POST_BORROW_REJECTED":
+    case "POST_WISHLIST_REJECTED":
       return {
         ...state,
         isLoading: false,
         isRejected: true
       };
 
-    case "POST_BORROW_FULFILLED":
-      state.borrowkList.push(action.payload.data);
+    case "POST_WISHLIST_FULFILLED":
+      state.wishlistList.push(action.payload.data);
       return {
         isLoading: false,
         isFulfilled: true,
-        borrowList: state.borrowkList
+        wishlistList: state.wishlistList
       };
 
     default:

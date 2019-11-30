@@ -8,6 +8,7 @@ import Detail from "./Pages/Detail/Detail";
 import Register from "./Pages/Register/register";
 import Login from "./Pages/Login/login";
 import History from "./Pages/History/History";
+import Wishlist from "./Pages/Wishlist/Wishlist"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/history" component={History} />
+            <Route path="/wishlist" component={Wishlist} />
           </Switch>
         </Provider>
       </div>

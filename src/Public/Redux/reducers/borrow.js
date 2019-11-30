@@ -46,11 +46,11 @@ const borrow = (state = initialState, action) => {
       };
 
     case "POST_BORROW_FULFILLED":
-      state.borrowkList.push(action.payload.data);
+      state.borrowList.push(action.payload.data);
       return {
         isLoading: false,
         isFulfilled: true,
-        borrowList: state.borrowkList
+        borrowList: state.borrowList
       };
 
     default:

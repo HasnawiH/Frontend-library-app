@@ -11,8 +11,7 @@ import {
   Button
 } from "@material-ui/core";
 import imgEmpty from "../../Assets/img/empty.svg";
-// import { Link } from "react-router-dom";
-import { getWhishlist } from "../../Public/Redux/actions/borrow";
+import { getWishlist } from "../../Public/Redux/actions/wishlist";
 
 const useStyles = makeStyles({
   card: {
@@ -40,7 +39,7 @@ const Whishlist = () => {
   }
 
   useEffect(() => {
-    dispatch(getWhishlist(id_user));
+    dispatch(getWishlist(id_user));
   });
 
   return (

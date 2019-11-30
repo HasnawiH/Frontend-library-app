@@ -88,7 +88,7 @@ const History = () => {
                         &nbsp; &nbsp;
                         <br />
                         <Button variant="contained" color="primary">
-                          Retrun
+                          Return
                         </Button>
                       </CardContent>
                     </Card>
