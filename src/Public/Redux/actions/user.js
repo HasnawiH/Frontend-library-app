@@ -1,5 +1,4 @@
 import Axios from "axios";
-// const token = window.localStorage.getItem("token")
 
 export const login = (email, password) => {
   return {

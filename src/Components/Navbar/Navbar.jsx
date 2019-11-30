@@ -22,11 +22,12 @@ const Navbar = () => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResults] = useState([]);
   const dispatch = useDispatch();
+
   const resultmap = book.map(element => {
     return element.title;
   });
 
-  //handleChange
+  //handleonChange
   const handleChange = e => {
     setSearch(e.target.value);
   };
@@ -50,6 +51,8 @@ const Navbar = () => {
         All Time <ArrowDropDownIcon />
       </MenuItem>
       <Typography className={classes.title} variant="h6" noWrap></Typography>
+
+      {/* component search */}
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon />
@@ -65,6 +68,8 @@ const Navbar = () => {
           inputProps={{ "aria-label": "search" }}
         />
       </div>
+
+      {/* component login,register and logout */}
       {token ? (
         <Link style={{ textDecoration: "none" }} to={`/`}>
           <Button
@@ -100,6 +105,8 @@ const Navbar = () => {
           </Link>
         </Fragment>
       )}
+
+      {/* component logo */}
       <Toolbar>
         <img style={{ width: 32, height: 32 }} src={logo} alt="logo"></img>
         <h3 style={{ color: "black" }}>LibeX App</h3>

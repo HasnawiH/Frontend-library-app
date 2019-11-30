@@ -12,17 +12,17 @@ import useStyles from "./HomeStyle";
 import Navbar from "../../Components/Navbar/Navbar";
 import SideNav from "../../Components/SideNav/SideNav";
 import ImgMediaCard from "../../Components/Card/Card";
-//import SlideView from "../../Components/Carousel/Carousel";
-import Cardflow from "../../Components/Carousel/Carousel copy";
+import Cardflow from "../../Components/Carousel/Carousel";
 
+//function component
 const Home = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
+  //hande Open and Close
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -30,6 +30,8 @@ const Home = () => {
   return (
     <Toolbar className={classes.root}>
       <CssBaseline />
+
+      {/* componen Navbar */}
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
@@ -50,6 +52,7 @@ const Home = () => {
         </Toolbar>
       </AppBar>
 
+      {/* component Sidebar/Drawer */}
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -66,6 +69,8 @@ const Home = () => {
         </div>
         <SideNav />
       </Drawer>
+
+      {/* main */}
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open

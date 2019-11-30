@@ -8,7 +8,6 @@ const initialState = {
 
 const user = (state = initialState, action) => {
   switch (action.type) {
-    //==================LOGIN=========
     case "LOGIN_PENDING":
       return {
         ...state,
@@ -30,8 +29,7 @@ const user = (state = initialState, action) => {
         isFullfiled: true,
         login: action.payload
       };
-
-    //================REGISTER======
+      
     case "REGISTER_PENDING":
       return {
         ...state,

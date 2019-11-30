@@ -24,6 +24,7 @@ import Swal from "sweetalert2";
 import { updateBook, deleteBook } from "../../Public/Redux/actions/book";
 import { borrowBooks } from "../../Public/Redux/actions/borrow";
 
+//styling 
 const styles = theme => ({
   root: {
     margin: 0,
@@ -67,6 +68,9 @@ const DialogTitle = withStyles(styles)(props => {
 //function component
 const Detail = props => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const book = useSelector(state => state.book.bookList);
   const [open, setOpen] = useState(false);
   const [bookDetail, setBookDetail] = useState({
     title: "",
@@ -76,10 +80,7 @@ const Detail = props => {
     status: "",
     imgUrl: ""
   });
-  const token = localStorage.getItem("token");
-
-  const dispatch = useDispatch();
-  const book = useSelector(state => state.book.bookList);
+ 
 
   useEffect(() => {
     const { id } = props.match.params;
@@ -116,6 +117,12 @@ const Detail = props => {
     setInterval(() => {
       handleClose();
     }, 1000);
+  };
+
+  //handleBorrow
+  const handleBorrow = async () => {
+    const id_book = props.match.params.id;
+    await dispatch(borrowBooks(id_book, id_user));
   };
 
   //handle delete
@@ -159,14 +166,12 @@ const Detail = props => {
     id_user = user.user_id;
     level = user.level;
   }
-  const handleBorrow = async () => {
-    const id_book = props.match.params.id;
-    await dispatch(borrowBooks(id_book, id_user));
-  };
-
+  
   return (
     <>
       <Grid container style={{ flexGrow: 1 }}>
+
+        {/* modal edit */}
         <Dialog aria-labelledby="customized-dialog-title" open={open}>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
             Edit Data
@@ -249,11 +254,9 @@ const Detail = props => {
             </Button>
           </DialogActions>
         </Dialog>
+
         {/* Detail */}
         <Card className={classes.card}>
-          {/* <Button style={{ marginLeft: 910 }} variant="contained" color="primary">
-          Borrow
-        </Button> */}
           <CardMedia
             component="img"
             alt={bookDetail.title}
@@ -284,14 +287,6 @@ const Detail = props => {
             ""
           )}
 
-          {/* <Button
-          style={{ marginLeft: 980, top: "-266px" }}
-          variant="contained"
-          color="default"
-          onClick={handleBack}
-        >
-          Back
-        </Button> */}
           <CardContent
             style={{
               height: "275px",

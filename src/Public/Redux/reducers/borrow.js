@@ -7,7 +7,6 @@ const initialState = {
 
 const borrow = (state = initialState, action) => {
   switch (action.type) {
-    //case Get book
     case "GET_BORROW_PENDING":
       return {
         ...state,
