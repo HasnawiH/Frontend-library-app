@@ -119,6 +119,10 @@ const SideNav = () => {
     window.location.href = "/history";
   };
 
+  const handleWishlist = e => {
+    window.location.href = "/wishlist";
+  };
+
   return (
     <Fragment>
       {/* modal add data code */}
@@ -230,7 +234,7 @@ const SideNav = () => {
               <Explore className={classes.icon} />
               <ListItemText className={classes.listItem} primary="Explore" />
             </ListItem>
-            <ListItem href="/history" button>
+            <ListItem button>
               <History className={classes.icon} />
               <ListItemText
                 onClick={handleHistory}
@@ -240,7 +244,7 @@ const SideNav = () => {
             </ListItem>
             <ListItem button>
               <History className={classes.icon} />
-              <ListItemText className={classes.listItem} primary="Wishlist" />
+              <ListItemText onClick={handleWishlist} className={classes.listItem} primary="Wishlist" />
             </ListItem>
           </Fragment>
         ) : (

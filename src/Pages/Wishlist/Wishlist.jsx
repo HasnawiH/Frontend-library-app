@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 const Whishlist = () => {
   const classes = useStyles();
   const [spacing] = useState(6);
-  const listBorrow = useSelector(state => state.borrow.whishList);
+  const List = useSelector(state => state.wishlist.wishlistList);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
 
@@ -55,16 +55,16 @@ const Whishlist = () => {
             <h1 style={{ marginTop: "100px" }}>Yours Whishlist</h1>
           </Grid>
           <hr style={{ paddingTop: "20px", height: "5px" }} />
-          {listBorrow.length > 0 ? (
+          {List.length > 0 ? (
             <Grid
               style={{ paddingTop: "20px" }}
               container
               justify="center"
               spacing={spacing}
             >
-              {listBorrow &&
-                listBorrow.length > 0 &&
-                listBorrow.map((books, index) => {
+              {List &&
+                List.length > 0 &&
+                List.map((books, index) => {
                   return (
                     <Card key={index} className={classes.card}>
                       <CardMedia

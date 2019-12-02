@@ -9,7 +9,7 @@ const Reducers = combineReducers({
   book,
   user,
   borrow,
-
+  wishlist
 });
 
 export default Reducers;

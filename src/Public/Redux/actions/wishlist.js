@@ -4,7 +4,7 @@ export const getWishlist = id_user => {
   return {
     type: "GET_WISHLIST",
     payload: Axios.get(
-      `https://lib-backend.herokuapp.com/whislist/get/${id_user}`
+      `https://lib-backend.herokuapp.com/whishlist/get/${id_user}`
     )
   };
 };
@@ -12,7 +12,7 @@ export const getWishlist = id_user => {
 export const wishlistBooks = (id_book, id_user) => {
   return {
     type: "POST_WISHLIST",
-    payload: Axios.post(`https://lib-backend.herokuapp.com/whislist`, {
+    payload: Axios.post(`https://lib-backend.herokuapp.com/whishlist`, {
       id_book,
       id_user
     })

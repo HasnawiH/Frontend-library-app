@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import decode from "jwt-decode";
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,6 +23,7 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Swal from "sweetalert2";
 import { updateBook, deleteBook } from "../../Public/Redux/actions/book";
 import { borrowBooks } from "../../Public/Redux/actions/borrow";
+import { wishlistBooks } from "../../Public/Redux/actions/wishlist";
 
 //styling 
 const styles = theme => ({
@@ -123,6 +124,12 @@ const Detail = props => {
   const handleBorrow = async () => {
     const id_book = props.match.params.id;
     await dispatch(borrowBooks(id_book, id_user));
+  };
+
+  //handleWishlist
+  const handleWishlist = async () => {
+    const id_book = props.match.params.id;
+    await dispatch(wishlistBooks(id_book, id_user));
   };
 
   //handle delete
@@ -318,6 +325,7 @@ const Detail = props => {
               {bookDetail.desc}
             </Typography>
             {level === "user" ? (
+              <Fragment>
               <Button
                 style={{ marginLeft: 840, borderRadius: 10 }}
                 variant="contained"
@@ -325,7 +333,7 @@ const Detail = props => {
                 disabled={bookDetail.status !== "Avaliable"}
                 onClick={e => {
                   e.preventDefault();
-                  handleBorrow();
+                  handleWishlist();
                   Swal.fire({
                     position: "center",
                     type: "success",
@@ -340,6 +348,29 @@ const Detail = props => {
               >
                 Borrow
               </Button>
+              <Button
+              style={{ marginLeft: 840, borderRadius: 10, marginTop:20 }}
+              variant="contained"
+              color="primary"
+              disabled={bookDetail.status !== "Avaliable"}
+              onClick={e => {
+                e.preventDefault();
+                handleWishlist();
+                Swal.fire({
+                  position: "center",
+                  type: "success",
+                  icon: "success",
+                  title: "Add to wishlist success"
+                  // showConfirmButton: true
+                });
+                // setInterval(() => {
+                //   window.location.href = "/";
+                // }, 1000);
+              }}
+            >
+              Wishlist
+            </Button>
+            </Fragment>
             ) : (
               " "
             )}
@@ -350,7 +381,7 @@ const Detail = props => {
                 height: 200,
                 borderRadius: 5,
                 marginLeft: 810,
-                top: "-300px",
+                top: "-340px",
                 boxShadow: 20
               }}
             />
