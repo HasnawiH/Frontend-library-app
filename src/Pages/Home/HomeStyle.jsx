@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
     })
   },
   menuButton: {
-    marginRight: theme.spacing(5)
+    marginRight: theme.spacing(3),
+    marginLeft: 12
   },
   hide: {
     display: "none"
@@ -61,9 +62,10 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0
   },
   h2: {
-    paddingTop: 2,
-    marginLeft: 57,
-    fontSize: 30
+    paddingTop: 20,
+    marginLeft: 85,
+    fontSize: 35,
+    fontFamily: "Concert One"
   }
 }));
 

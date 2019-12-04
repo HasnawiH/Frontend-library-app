@@ -333,13 +333,13 @@ const Detail = props => {
                 disabled={bookDetail.status !== "Avaliable"}
                 onClick={e => {
                   e.preventDefault();
-                  handleWishlist();
+                  handleBorrow();
                   Swal.fire({
                     position: "center",
                     type: "success",
                     icon: "success",
-                    title: "Borrow success"
-                    // showConfirmButton: true
+                    title: "Borrow success",
+                    showConfirmButton: false
                   });
                   setInterval(() => {
                     window.location.href = "/";
@@ -360,12 +360,12 @@ const Detail = props => {
                   position: "center",
                   type: "success",
                   icon: "success",
-                  title: "Add to wishlist success"
-                  // showConfirmButton: true
+                  title: "Add to wishlist success",
+                  showConfirmButton: false
                 });
-                // setInterval(() => {
-                //   window.location.href = "/";
-                // }, 1000);
+                setInterval(() => {
+                  window.location.href = "/";
+                }, 1000);
               }}
             >
               Wishlist

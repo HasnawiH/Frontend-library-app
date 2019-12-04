@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   card: {
     maxWidth: 250,
     borderRadius: 10,
-    margin: 20
+    margin: 25
   },
   root: {
     flexGrow: 1
@@ -30,7 +30,7 @@ const ImgMediaCard = () => {
   const [spacing] = useState(6);
   const dispatch = useDispatch();
   const book = useSelector(state => state.book.bookList);
-  //const searchResult = useSelector(state => state.book.search);
+  // const searchResult = useSelector(state => state.book.search);
 
   useEffect(() => {
     dispatch(getBooks());
@@ -48,7 +48,7 @@ const ImgMediaCard = () => {
                   <Link to={`detail/${books.id}`}>
                     <CardMedia
                       component="img"
-                      height="140"
+                      height="150"
                       image={books.imgUrl}
                       book={books.imgUrl}
                       title="View Detail"

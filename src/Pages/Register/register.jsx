@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
+import {Avatar, Button, CssBaseline, TextField, Link, Grid, Typography, Container } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import Swal from "sweetalert2";
 import { register } from "../../Public/Redux/actions/user";
+import Navbar from "../../Components/Navbar/Navabr2"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -85,6 +79,8 @@ const SignUp = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -92,7 +88,7 @@ const SignUp = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign Up
+          Register
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -111,7 +107,7 @@ const SignUp = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Typography style={{ fontSize: "10px" }} variant="h6">
+              <Typography style={{ fontSize: "15px" }} variant="h6">
                 * Character minimal 3
               </Typography>
             </Grid>
@@ -129,7 +125,7 @@ const SignUp = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Typography style={{ fontSize: "10px" }} variant="h6">
+              <Typography style={{ fontSize: "15px" }} variant="h6">
                 * Example : example@gmail.com
               </Typography>
             </Grid>
@@ -148,7 +144,7 @@ const SignUp = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Typography style={{ fontSize: "10px" }} variant="h6">
+              <Typography style={{ fontSize: "15px" }} variant="h6">
                 * Character minimal 8
               </Typography>
             </Grid>
@@ -180,6 +176,7 @@ const SignUp = () => {
         </form>
       </div>
     </Container>
+    </>
   );
 };
 

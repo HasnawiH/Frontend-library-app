@@ -1,18 +1,11 @@
 import React, { useState } from "react";
-// import Axios from "axios";
 import { useDispatch } from "react-redux";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
+import {Avatar, Button, CssBaseline, TextField, Link, Grid, Typography, Container} from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import { login } from "../../Public/Redux/actions/user";
 import Swal from "sweetalert2";
+import { login } from "../../Public/Redux/actions/user";
+import Navbar from "../../Components/Navbar/Navabr2"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -36,11 +29,12 @@ const useStyles = makeStyles(theme => ({
 
 const SignIn = () => {
   const classes = useStyles();
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
   const [input, setInput] = useState({
     email: "",
     password: ""
   });
+  
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -59,8 +53,8 @@ const SignIn = () => {
             position: "center",
             type: "success",
             icon: "success",
-            title: "Login success. \n Welcome to Libex app"
-            // showConfirmButton: true
+            title: "Login success. \n Welcome to Libex app",
+            showConfirmButton: false
           });
           setInterval(() => {
             window.location.href = "/";
@@ -70,7 +64,7 @@ const SignIn = () => {
             position: "center",
             type: "error",
             title: "Wrong email or password!",
-            showConfirmButton: true
+            showConfirmButton: false
           });
           setInterval(() => {
             window.location.reload();
@@ -83,6 +77,8 @@ const SignIn = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -90,7 +86,7 @@ const SignIn = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign In
+          Login
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -143,6 +139,7 @@ const SignIn = () => {
         </form>
       </div>
     </Container>
+    </>
   );
 };
 

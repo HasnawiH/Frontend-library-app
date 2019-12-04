@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -32,6 +32,7 @@ const Navbar = () => {
     setSearch(e.target.value);
   };
 
+
   useEffect(() => {
     const results = resultmap.filter(books =>
       books.toLowerCase().includes(search)
@@ -44,12 +45,15 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <MenuItem className={classes.menuItem}>
+      
+      <MenuItem className={classes.menuItem} >
         All Categories <ArrowDropDownIcon />
       </MenuItem>
+ 
       <MenuItem className={classes.menuItem}>
         All Time <ArrowDropDownIcon />
       </MenuItem>
+      
       <Typography className={classes.title} variant="h6" noWrap></Typography>
 
       {/* component search */}
@@ -58,8 +62,8 @@ const Navbar = () => {
           <SearchIcon />
         </div>
         <InputBase
-          placeholder="Search Book.."
-          value={search}
+          placeholder="Search book.."
+          value={search}y
           onChange={handleChange}
           classes={{
             root: classes.inputRoot,
@@ -89,16 +93,16 @@ const Navbar = () => {
         <Fragment>
           <Link style={{ textDecoration: "none" }} to={`/login`}>
             <Button
-              variant="primary"
-              style={{ marginLeft: "30px", fontWeight: "bold" }}
+              style={{ marginLeft: "20px", fontWeight: "bold" }}
             >
               Login
             </Button>
           </Link>
           <Link style={{ textDecoration: "none" }} to={`/register`}>
             <Button
-              variant="primary"
-              style={{ marginLeft: "0px", fontWeight: "bold" }}
+              style={{ marginLeft: "15px", fontWeight: "bold" }}
+              variant="contained"
+              color="primary"
             >
               Register
             </Button>
@@ -107,9 +111,10 @@ const Navbar = () => {
       )}
 
       {/* component logo */}
-      <Toolbar>
-        <img style={{ width: 32, height: 32 }} src={logo} alt="logo"></img>
-        <h3 style={{ color: "black" }}>LibeX App</h3>
+      <Toolbar style={{marginLeft: "20px"}}>
+        <a href="/">
+        <img  style={{ width: 115, height: 37 }} src={logo} alt="logo" />
+        </a>
       </Toolbar>
     </Fragment>
   );

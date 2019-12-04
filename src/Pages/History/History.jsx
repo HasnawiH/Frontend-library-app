@@ -10,8 +10,8 @@ import {
   Typography,
   Button
 } from "@material-ui/core";
+import Navbar from "../../Components/Navbar/Navabr2"
 import imgEmpty from "../../Assets/img/empty.svg";
-// import { Link } from "react-router-dom";
 import { getBorrow } from "../../Public/Redux/actions/borrow";
 
 const useStyles = makeStyles({
@@ -21,7 +21,8 @@ const useStyles = makeStyles({
     margin: 20
   },
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    width: "100%"
   }
 });
 
@@ -45,20 +46,19 @@ const History = () => {
 
   return (
     <Fragment>
+      <Navbar/>
       <Grid container className={classes.root} spacing={10}>
         <Grid item xs={12}>
           <Grid
-            style={{ paddingTop: "20px" }}
             container
             justify="center"
             spacing={spacing}
           >
-            <h1 style={{ marginTop: "100px" }}> Your History Borrow</h1>
+            <h2 style={{ marginTop: "60px" }}> Your History Borrow</h2>
           </Grid>
-          <hr style={{ paddingTop: "20px", height: "5px" }} />
           {listBorrow.length > 0 ? (
             <Grid
-              style={{ paddingTop: "20px" }}
+              style={{ paddingTop: "25px" }}
               container
               justify="center"
               spacing={spacing}

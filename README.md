@@ -1,13 +1,15 @@
-# 📚Library App Frontend
 
-<p align = "center"><a href="https://www.arkademy.com/" target="blank"><img src="https://www.arkademy.com/img/logo%20arkademy-01.9c1222ba.png" width="200" alt="Arkademy" /></a></p>
+<p align = "center"><img src="./src/Assets/img/libex.png" width="200" alt="libex" /></p>
 
-Library Frontend Using ReactJS and Material UI
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+<img src="https://img.shields.io/badge/react-16.10.2-blue">
+<img src="https://img.shields.io/badge/axios-0.19.0-brightgreen">
+<img src="https://img.shields.io/badge/react_dom-16.10.2-yellow">
+<img src="https://img.shields.io/badge/material_ui-4.5.1-purple">
+<img src="https://img.shields.io/badge/react_redux-7.1.1-orange">
+</p>
 
-[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-[![GitHub followers](https://img.shields.io/github/followers/iyansr?style=social)](https://github.com/HasnawiH?tab=followers)
+Libex is an application using ReactJS and Material UI
 
 # Table Of Content
 

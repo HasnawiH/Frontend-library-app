@@ -8,19 +8,20 @@ const Cardflow = () => {
 
   return (
     <StyleRoot>
-      <Coverflow
+      <Coverflow 
+       navigation
         displayQuantityOfSide={6}
-        navigation={true}
-        enableHeading={true}
+        infiniteScroll
         media={{
           "@media (max-width: 800px)": {
             width: "700px",
             height: "200px"
           },
-          "@media (min-width: 800px)": {
-            width: "950px",
+          "@media (min-width: 1000px)": {
+            width: "1000px",
             height: "300px",
-            borderRadius: 10
+            borderRadius: 10,
+            backgroundColor: "white"
           }
         }}
       >

@@ -7,7 +7,8 @@ import {
   Toolbar,
   IconButton
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
+import AppsIcon from '@material-ui/icons/Apps';
+import CloseIcon from '@material-ui/icons/Close';
 import useStyles from "./HomeStyle";
 import Navbar from "../../Components/Navbar/Navbar";
 import SideNav from "../../Components/SideNav/SideNav";
@@ -46,7 +47,7 @@ const Home = () => {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon />
+            <AppsIcon />
           </IconButton>
           <Navbar />
         </Toolbar>
@@ -64,7 +65,7 @@ const Home = () => {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            <MenuIcon style={{ color: "white" }} />
+            <CloseIcon style={{ color: "white" }} />
           </IconButton>
         </div>
         <SideNav />
@@ -78,7 +79,7 @@ const Home = () => {
       >
         <div className={classes.drawerHeader} />
         <Cardflow />
-        <h2 className={classes.h2}>List Book</h2>
+        <h2 className={classes.h2}>list book</h2>
         <ImgMediaCard />
       </main>
     </Toolbar>
