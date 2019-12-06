@@ -60,13 +60,13 @@ const ImgMediaCard = () => {
                       label={books.status}
                       color={
                         // eslint-disable-next-line eqeqeq
-                        books.status == "Avaliable" ? "primary" : "secondary"
+                        books.status == "Available" ? "primary" : "secondary"
                       }
                     />
                     &nbsp; &nbsp;
                     <Chip size="small" variant="outlined" label={books.genre} />
                     <br />
-                    <Typography gutterBottom variant="h6" component="h2">
+                    <Typography className="title" gutterBottom variant="h6" component="h2">
                       {books.title}
                     </Typography>
                     <Typography

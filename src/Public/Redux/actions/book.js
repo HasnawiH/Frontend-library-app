@@ -10,7 +10,7 @@ export const getBooks = () => {
 export const searchByTitle = title => {
   return {
     type: "GET_TITLE",
-    payload: Axios.get(`https://lib-backend.herokuapp.com/search/${title}`)
+    payload: Axios.get(`https://lib-backend.herokuapp.com/book/search/${title}`)
   };
 };
 
@@ -29,10 +29,9 @@ export const addBook = (title, author, desc, genre, status, imgUrl) => {
 };
 
 export const updateBook = (id, title, author, desc, genre, status, imgUrl) => {
-  console.log(`ini update`, id, title, author, desc, genre, status, imgUrl);
   return {
     type: "UPDATE_BOOK",
-    payload: Axios.put(`https://lib-backend.herokuapp.com/update/${id}`, {
+    payload: Axios.put(`https://lib-backend.herokuapp.com/book/update/${id}`, {
       title,
       author,
       desc,
@@ -50,9 +49,9 @@ export const deleteBook = id => {
   };
 };
 
-export const searchBook = title => {
-  return {
-    type: "SEARCH_BOOK",
-    payload: title
-  };
-};
+// export const searchBook = title => {
+//   return {
+//     type: "SEARCH_BOOK",
+//     payload: title
+//   };
+// };

@@ -14,6 +14,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import SideNav from "../../Components/SideNav/SideNav";
 import ImgMediaCard from "../../Components/Card/Card";
 import Cardflow from "../../Components/Carousel/Carousel";
+import Footer from "../../Components/Footer/Footer"
 
 //function component
 const Home = () => {
@@ -47,7 +48,7 @@ const Home = () => {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <AppsIcon />
+            <AppsIcon style={{color:"#487eb0"}} />
           </IconButton>
           <Navbar />
         </Toolbar>
@@ -65,7 +66,7 @@ const Home = () => {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            <CloseIcon style={{ color: "white" }} />
+            <CloseIcon style={{ color: "white", width: "17px", height: "17px" }} />
           </IconButton>
         </div>
         <SideNav />

@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Coverflow from "react-coverflow";
-import { StyleRoot } from "radium";
+// import { StyleRoot } from "radium";
 
 const Cardflow = () => {
   const Book = useSelector(state => state.book.bookList);
 
   return (
-    <StyleRoot>
+    // <StyleRoot>
       <Coverflow 
        navigation
         displayQuantityOfSide={6}
@@ -27,11 +27,10 @@ const Cardflow = () => {
       >
         {Book.map(books => {
           return (
-            <img style={{ zIndex: 0 }} src={books.imgUrl} alt={books.title} />
+            <img  src={books.imgUrl} alt={books.title} />
           );
         })}
       </Coverflow>
-    </StyleRoot>
   );
 };
 

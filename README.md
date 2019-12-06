@@ -20,7 +20,7 @@ Libex is a library application using ReactJS and Material UI
   
 
 ## Stacks
- # Build with React Hooks & Redux
+ Build with React Hooks & Redux
 
  <img width="300" height="150" src="https://miro.medium.com/max/966/1*jYy3Hc1qmQL9gpYF5rI3Sg.png">
 

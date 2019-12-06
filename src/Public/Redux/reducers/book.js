@@ -1,6 +1,6 @@
 const initialState = {
   bookList: [],
-  search: [],
+  // search: "",
   isLoading: false,
   isFulfilled: false,
   isRejected: false
@@ -69,11 +69,12 @@ const book = (state = initialState, action) => {
         isRejected: true
       };
     case "UPDATE_BOOK_FULFILLED":
+      const updateData =  state.bookList.map(book => {return (book.id == action.payload.data.id) ? action.payload.data: book})
       return {
         ...state,
         isLoading: false,
         isFulfilled: true,
-        bookList: action.payload.data
+        bookList: updateData
       };
 
     //case delete
@@ -126,10 +127,14 @@ const book = (state = initialState, action) => {
         bookList: action.payload.data
       };
 
-    case "SEARCH_BOOK":
-      return {
-        bookList: action.payload.data
-      };
+    // case "SEARCH_BOOK":
+    //   const searchData = state.bookList.filter(
+    //     // eslint-disable-next-line eqeqeq
+    //     book => book.title != action.payload
+    //   );
+    //   return {
+    //     bookList: searchData
+    //   };
 
     default:
       return state;

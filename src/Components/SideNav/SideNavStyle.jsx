@@ -14,7 +14,8 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 15
   },
   icon: {
-    color: "white"
+    color: "white",
+    marginLeft: 20
   }
 }));
 

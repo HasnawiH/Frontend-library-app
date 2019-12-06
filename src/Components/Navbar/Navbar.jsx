@@ -12,40 +12,37 @@ import SearchIcon from "@material-ui/icons/Search";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import useStyles from "./NavbarStyle";
 import logo from "../../Assets/img/libex.png";
-import { searchBook, getBooks } from "../../Public/Redux/actions/book";
+import { searchByTitle, getBooks, searchBook } from "../../Public/Redux/actions/book";
 
 //function component
 const Navbar = () => {
-  const book = useSelector(state => state.book.bookList);
+  // const book = useSelector(state => state.book.bookList);
   const classes = useStyles();
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [search, setSearch] = useState("");
-  const [searchResult, setSearchResults] = useState([]);
+  // const [searchResult, setSearchResults] = useState([]);
   const dispatch = useDispatch();
 
-  const resultmap = book.map(element => {
-    return element.title;
-  });
+  // const resultmap = book.map(element => {
+  //   return element.title;
+  // });
 
   //handleonChange
   const handleChange = e => {
     setSearch(e.target.value);
+    if (search !== "") {
+      dispatch(searchByTitle(search));
+    } else {
+      dispatch(getBooks())
+    }
   };
 
-
-  useEffect(() => {
-    const results = resultmap.filter(books =>
-      books.toLowerCase().includes(search)
-    );
-    setSearchResults(results);
-    if (search !== "") {
-      dispatch(searchBook(searchResult));
-    }
-  }, [search]);
+  // const handleSearch = () =>{
+  //   dispatch(searchByTitle(search));
+  // }
 
   return (
     <Fragment>
-      
       <MenuItem className={classes.menuItem} >
         All Categories <ArrowDropDownIcon />
       </MenuItem>
@@ -63,13 +60,18 @@ const Navbar = () => {
         </div>
         <InputBase
           placeholder="Search book.."
-          value={search}y
+          value={search}
           onChange={handleChange}
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput
           }}
           inputProps={{ "aria-label": "search" }}
+          // onKeyPress={event =>{
+          //     if(event.which == 13 || event.keyCode == 13){
+          //       handleSearch()
+          //   }
+          // }}
         />
       </div>
 

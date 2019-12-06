@@ -18,7 +18,7 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
-import { Add, Explore, History } from "@material-ui/icons";
+import { Add, Explore, History, FavoriteBorder } from "@material-ui/icons";
 import imgAvatar from "../../Assets/img/img3.png";
 import useStyles from "./SideNavStyle";
 import { addBook } from "../../Public/Redux/actions/book";
@@ -104,7 +104,7 @@ const SideNav = () => {
     dispatch(addBook(title, author, desc, genre, status, imgUrl));
     setInterval(() => {
       window.location.reload();
-    }, 1000);
+    }, 1300);
   };
 
   //decode token
@@ -201,7 +201,8 @@ const SideNav = () => {
             />
           </DialogContent>
           <DialogActions>
-            <Button color="primary" autoFocus onClick={handleSubmit}>
+            <Button variant="contained"
+              color="primary" autoFocus onClick={handleSubmit}>
               Save
             </Button>
           </DialogActions>
@@ -232,7 +233,7 @@ const SideNav = () => {
           <Fragment>
             <ListItem button>
               <Explore className={classes.icon} />
-              <ListItemText className={classes.listItem} primary="Explore" />
+              <ListItemText className={classes.listItem} primary="Explore" /> 
             </ListItem>
             <ListItem button>
               <History className={classes.icon} />
@@ -243,7 +244,7 @@ const SideNav = () => {
               />
             </ListItem>
             <ListItem button>
-              <History className={classes.icon} />
+              <FavoriteBorder className={classes.icon} />
               <ListItemText onClick={handleWishlist} className={classes.listItem} primary="Wishlist" />
             </ListItem>
           </Fragment>

@@ -17,10 +17,8 @@ import {
   DialogContent,
   DialogActions,
   TextField,
-  Grid,
-  Tooltip
+  Grid
 } from "@material-ui/core";
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Swal from "sweetalert2";
 import { updateBook, deleteBook } from "../../Public/Redux/actions/book";
@@ -264,20 +262,22 @@ const Detail = props => {
         </Dialog>
 
         {/* Detail */}
-        <Grid container>
+        <Card className={classes.card}>
+          <Grid>
           <CardMedia
             component="img"
             alt={bookDetail.title}
-            height="250px"
+            height="300px"
             image={bookDetail.imgUrl}
             title={bookDetail.title}
           />
-       
+          </Grid>
+
           {/* ternary button delete and edit */}
           {token && level === "admin" ? (
             <>
               <Button
-                style={{ marginLeft: 1120, top: "-230px", opacity: 0.8 }}
+                style={{ marginLeft: 1060, top: "-230px" }}
                 variant="contained"
                 color="default"
                 onClick={handleDeleteButton}
@@ -285,7 +285,7 @@ const Detail = props => {
                 Delete
               </Button>
               <Button
-                style={{ marginLeft: 1040, top: "-266px", opacity: 0.8 }}
+                style={{ marginLeft: 980, top: "-266px" }}
                 variant="contained"
                 color="default"
                 onClick={handleClickOpen}
@@ -296,18 +296,14 @@ const Detail = props => {
           ) : (
             ""
           )}
-          </Grid>
 
           {/* content */}
-          <Grid style={{flexGrow: 1}} container spacing={0}>
-            <Grid item xs={8}>
-            <CardContent
+          <CardContent
             style={{
               height: "275px",
-              marginLeft: 150,
-              paddingTop: 40
+              marginLeft: 150
             }}
-            >
+          >
             <Chip size="large" label={bookDetail.genre} color="primary" />
             <br />
             <Typography
@@ -317,70 +313,27 @@ const Detail = props => {
               color={
                 bookDetail.status === "Available" ? "primary" : "secondary"
               }
-              style={{ marginLeft: 500 }}
+              style={{ marginLeft: 500, bottom: "-50px" }}
             >
               {bookDetail.status}
             </Typography>
-            <Typography style={{ width: "90%" }} gutterBottom variant="h4" component="h1">
+            <Typography style={{ width: "40%" }} gutterBottom variant="h4" component="h1">
               {bookDetail.title}
             </Typography>
             <Typography
-              style={{ width: "90%" }}
+              style={{ width: "40%" }}
               variant="body2"
               color="textSecondary"
               component="p"
             >
               {bookDetail.desc}
             </Typography>
-            </CardContent>
-            </Grid>
 
-            {/* content image, borrow and wishlist */}
-            <Grid item xs={4}>
-            <CardContent
-            style={{
-              height: "275px",
-              marginLeft: 130,
-              paddingTop: 40
-            }}
-            >
-              {/* logo libex */}
-              <Avatar
-                src={bookDetail.imgUrl}
-                style={{
-                  width: 170,
-                  height: 200,
-                  borderRadius: 5,
-                  paddingBottom: 25
-                }}
-              />
-
-              {level === "user" ? (
+            {/* ternary button borrow and wishlist */}
+            {level === "user" ? (
               <Fragment>
-                <Tooltip title="Add to wishlist">
-                <IconButton onClick={e => {
-                e.preventDefault();
-                handleWishlist();
-                Swal.fire({
-                  position: "center",
-                  type: "success",
-                  icon: "success",
-                  title: "Add to wishlist success",
-                  showConfirmButton: false
-                });
-                setInterval(() => {
-                  window.location.href = "/";
-                }, 1000);
-                }}
-                aria-label="wishlist"
-                style={{marginLeft: -70, marginTop: -200}}
-                >
-                  <FavoriteIcon />
-                </IconButton>
-              </Tooltip>
-              <br/>
               <Button
-                style={{ borderRadius: 5, marginLeft: 32 }}
+                style={{ marginLeft: 840, borderRadius: 10 }}
                 variant="contained"
                 color="primary"
                 disabled={bookDetail.status !== "Available"}
@@ -401,10 +354,8 @@ const Detail = props => {
               >
                 Borrow
               </Button>
-              
-              
-              {/* <Button
-              style={{ borderRadius: 10 }}
+              <Button
+              style={{ marginLeft: 840, borderRadius: 10, marginTop:20 }}
               variant="contained"
               color="primary"
               disabled={bookDetail.status !== "Available"}
@@ -424,14 +375,26 @@ const Detail = props => {
               }}
             >
               Wishlist
-            </Button> */}
+            </Button>
             </Fragment>
             ) : (
               " "
             )}
-            </CardContent>
-            </Grid>
-          </Grid>
+
+            {/* logo libex */}
+            <Avatar
+              src={bookDetail.imgUrl}
+              style={{
+                width: 170,
+                height: 200,
+                borderRadius: 5,
+                marginLeft: 810,
+                top: "-340px",
+                boxShadow: 20
+              }}
+            />
+          </CardContent>
+        </Card>
       </Grid>
     </>
   );
